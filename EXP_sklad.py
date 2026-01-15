@@ -162,52 +162,6 @@ class EXP_sklad:
 
         return pd.concat(results, ignore_index=True)
 
-    #def yesterday_not_today(self, df_esc_yesterday, df_esc_today, df_zap_but_yesterday, df_zap_but_today,
-    #                        key="zaruky", **conditions):
-    # TODO: asi vymazat
-    #    """
-    #    Vrati radky exportu, ktere od vcerejska bud zmizely z exp sklady centrala, nebo doslo k prodeji na butiku
-    #    zapujcene veci z centraly
-    #    :param df_esc_yesterday: Export sklady centrala vcerejsi
-    #    :param df_esc_today: Export sklady centrala dnesni
-    #    :param df_zap_but_yesterday: Export butiku se zapujckami vcerejsi
-    #    :param df_zap_but_today: Export butiku se zapujckami dnesni
-    #    :param key: v exp sklady centrala srovnavame rovnavame dle EANu
-    #    :param conditions: nechceme cely Export, pouze urcite sklady a urcite ceny
-    #    :return: Sperky splnujici podminky, ktere vcera byly a dnes jiz nejsou
-    #    """
-    #    y_filt = self.apply_conditions(df_esc_yesterday, **conditions)
-    #    t_filt = self.apply_conditions(df_esc_today, **conditions)
-
-    #    # co vcera bylo a dnes uz neni v export sklady centrala
-    #    df_esc_ynt = y_filt[~y_filt[key].isin(t_filt[key])]
-
-    #    # nyni zapujcky na buticich
-    #    y_zap_filt = self.apply_conditions(df_zap_but_yesterday, **conditions)
-    #    t_zap_filt = self.apply_conditions(df_zap_but_today, **conditions)
-
-    #    # merge dnesni se vcerejsim na EAN, datumy prodeje rozlisime suffixem vcera a dnes
-    #    y_zap_filt = y_zap_filt[["zaruky", "datum_prodeje"]]
-    #    df_merged = t_zap_filt.merge(
-    #        y_zap_filt,
-    #        on="zaruky",
-    #        how="left",
-    #        suffixes=("_dnes", "_vcera")
-    #    )
-
-    #    # vyfiltrujeme ty radky, kde prodej vcerejsi je prazdny a dnesni je vyplneny
-    #    df_zap_ynt = df_merged[
-    #        df_merged["datum_prodeje_dnes"].notna() &
-    #        df_merged["datum_prodeje_vcera"].isna()
-    #        ]
-
-    #    # vysledek zkombinujeme a vratime pouze sdile sloupce
-    #    common_cols = df_esc_ynt.columns.intersection(df_zap_ynt.columns)
-    #    result = pd.concat(
-    #        [df_esc_ynt[common_cols], df_zap_ynt[common_cols]],
-    #        ignore_index=True
-    #    )
-    #    return result
 
     def determine_missing_styles(self, df_missing, df_today_list):
         """
